@@ -1,7 +1,10 @@
 require 'pry'
+require 'pstore'
+
 class Movie_List
   def initialize
     @movies = []
+    @movies_store = PStore.new("movies.pstore")
   end
 
   def run
@@ -52,17 +55,25 @@ class Movie_List
     title = gets.chomp
     movie = Movie.new(title)
     @movies << movie
-    puts "What rating would you like to give this movie?"
+    puts "What rating (out of 100) would you like to give this movie?"
     rating = gets.chomp
     movie.score = rating
     puts "#{movie.title} has been added to your list with a rating of #{movie.score}."
+    @movies_store.transaction do
+      @movies_store[movie.title] = movie.score
+    end
   end
 
   def view_movie
     puts "What movie would you like to see?"
     film = gets.chomp
     movie = find_movie(film)
-    puts "#{movie.title} - #{movie.score}"
+    score = @movies_store.transaction {@movies_store[movie.title]}
+    puts "#{movie.title}"
+    puts "Your Score: #{score}"
+    puts "Rotten Tomatoes Score: #{movie.get_rt_score}"
+    #puts "Metacritic Score: #{movie.get_mc_score}"
+    puts "#{movie.get_rt_consensus}"
   end
 
   def find_movie(movie_title)
@@ -84,6 +95,7 @@ class Movie_List
     movie.score = rating
     puts "The rating has been updated, the score for #{movie.title} is now #{movie.score}."
   end
+
 
   def exit
     puts "Goodbye"
