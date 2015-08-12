@@ -11,30 +11,19 @@ class Movie
   end
 
   def get_rt_data
-    rt_title = @title.downcase.gsub(" ","_")
+    title_1 = @title.downcase.gsub(/['!?.:]/,"")
+    title_2 = title_1.gsub(/[,&-]/," ")
+    rt_title = title_2.gsub(/\s+/,"_")
     base_url = "http://www.rottentomatoes.com/m/"
     complete_url = base_url + rt_title
     html = open(complete_url)
     Nokogiri::HTML(html)
   end
 
-  # def get_mc_data
-  #   mc_title = @title.downcase.gsub(" ","-")
-  #   base_url = "http://www.metacritic.com/movie/"
-  #   complete_url = base_url + mc_title
-  #   html = open(complete_url)
-  #   Nokogiri::HTML(html)
-  # end
-
   def get_rt_score
     rt_data = get_rt_data
     rt_data.css("div#all-critics-numbers span.meter-value span[itemprop='ratingValue']").text
   end
-
-  # def get_mc_score
-  #   mc_data = get_mc_data
-  #   mc_data.css("div#all-critics-numbers span.meter-value span[itemprop='ratingValue']").text
-  # end
 
   def get_rt_consensus
     rt_data = get_rt_data
@@ -42,4 +31,10 @@ class Movie
     critics_consensus = critics_consensus.gsub(" Critics Consensus:","Critics Consensus:")
   end
 
+  def get_agreement
+    critic_name = data.css("div.review_table div.critic_name a[href='/critic/brad-keefe/']").text
+  end
+
 end
+
+
