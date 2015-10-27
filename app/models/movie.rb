@@ -1,14 +1,9 @@
 require 'nokogiri'
 require 'open-uri'
 
-class Movie
+class Movie < ActiveRecord::Base
   attr_accessor(:score)
   attr_reader(:title,:critic_score)
-
-  def initialize(title)
-    @title = title
-    @critic_score = nil
-  end
 
   def get_rt_data
     rt_title = @title.downcase.gsub(" ","_")
@@ -41,5 +36,4 @@ class Movie
     critics_consensus = rt_data.css("div#all-critics-numbers p.critic_consensus").text
     critics_consensus = critics_consensus.gsub(" Critics Consensus:","Critics Consensus:")
   end
-
 end
