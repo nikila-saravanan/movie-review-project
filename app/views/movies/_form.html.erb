@@ -1,9 +1,9 @@
 <%= form_for(@movie) do |f| %>
- <%= f.label :title %>:
+ <%= f.label :title %> :
  <%= f.text_field :title %><br />
 
- <%= f.label :rating %>:
- <%= f.number_field :rating, :class => 'text_field', :step => 0.5, :min => 0, :max => 10 %><br />
+ <%= f.label :rating %>(out of 100):
+ <%= f.number_field :rating, :class => 'text_field', :min => 0, :max => 100 %><br />
 
   <% if @movie.errors.any? %>
     <div id="error_explanation">

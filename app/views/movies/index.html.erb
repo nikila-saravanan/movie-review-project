@@ -10,16 +10,19 @@
   </thead>
 
   <tbody>
+  <% if user_signed_in? %>
     <% @movies.each do |movie| %>
-      <tr>
-        <td><%= link_to 'Show', movie %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <%= link_to movie[:title], movie %>
+        <br />
+        <%= link_to 'Edit', edit_movie_path(movie) %> |
+        <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <br></br>
     <% end %>
+  <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'Add a Movie', new_movie_path %>
+<% if user_signed_in? %>
+  <%= link_to 'Add a Movie', new_movie_path %>
+<% end %>

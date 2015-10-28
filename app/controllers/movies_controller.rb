@@ -10,6 +10,8 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
+    @score = @movie.get_rt_score
+    @consensus = @movie.get_rt_consensus
   end
 
   # GET /movies/new
@@ -25,7 +27,7 @@ class MoviesController < ApplicationController
   # POST /movies.json
   def create
     @movie = Movie.new(movie_params)
-
+    @score = @movie.get_rt_score
     respond_to do |format|
       if @movie.save
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
@@ -69,6 +71,6 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params[:movie]
+      params.require(:movie).permit(:title, :rating)
     end
 end

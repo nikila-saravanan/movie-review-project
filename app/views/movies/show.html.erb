@@ -1,4 +1,27 @@
 <p id="notice"><%= notice %></p>
-
+Title: <%= @movie[:title] %>
+<br></br>
+Personal Rating (out of 100): <%= @movie.rating %>
+<br></br>
+RT Rating (out of 100):
+<% if @score == nil || @score == ""%>
+  <br></br>
+  <div class="alert alert-danger" role="alert">
+    <p>Sorry we weren't able to locate an RT rating for this film</p>
+  </div>
+<% else %>
+  <%= @score %>
+<% end %>
+<br></br>
+<% if @consensus == nil || @consensus == ""%>
+  Critics Consensus:
+  <br></br>
+  <div class="alert alert-danger" role="alert">
+    <p>Sorry we weren't able to locate a critic consensus for this film</p>
+  </div>
+<% else %>
+<%= @consensus %>
+<% end %>
+<br></br>
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
