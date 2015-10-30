@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :movies
 
-  
+
+  get 'graph/index'
+  get 'graph/data', :defaults => { :format => 'json' }
 
   root 'movies#index'
   # The priority is based upon order of creation: first created -> highest priority.
