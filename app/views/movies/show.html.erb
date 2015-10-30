@@ -22,7 +22,8 @@ RT Rating (out of 100):
 <% else %>
 <%= @consensus %>
 <% end %>
-<%= horizontal_bar_chart( [1,2,3,4,5] ) %>
+<br></br>
+<%= horizontal_bar_chart( [@movie.rating, @score, @ratings_avg] ) %>
 <br></br>
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>

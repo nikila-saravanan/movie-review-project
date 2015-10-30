@@ -12,6 +12,8 @@ class MoviesController < ApplicationController
   def show
     @score = @movie.get_rt_score
     @consensus = @movie.get_rt_consensus
+    @movies = Movie.all
+    @ratings_avg = @movies.ratings_avg
   end
 
   # GET /movies/new

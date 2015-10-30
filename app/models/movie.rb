@@ -13,6 +13,18 @@ class Movie < ActiveRecord::Base
     Nokogiri::HTML(html)
   end
 
+  def self.ratings_avg
+    sum = 0
+    @movies = Movie.all
+    @movies.each do |movie|
+      unless movie.rating == nil
+        sum += movie.rating
+      end
+    end
+    sum / @movies.length
+  end
+
+
   # def get_mc_data
   #   mc_title = @title.downcase.gsub(" ","-")
   #   base_url = "http://www.metacritic.com/movie/"
