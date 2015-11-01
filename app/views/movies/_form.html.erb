@@ -1,10 +1,10 @@
 <%= form_for(@movie) do |f| %>
  <%= f.label :title %> :
  <%= f.text_field :title %><br />
-
- <%= f.label :rating %>(out of 100):
+ 
+ <%= f.label :rating %> (out of 100):
  <%= f.number_field :rating, :class => 'text_field', :min => 0, :max => 100 %><br />
-
+<br></br>
   <% if @movie.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>

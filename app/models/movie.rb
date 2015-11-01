@@ -3,14 +3,22 @@ require 'open-uri'
 
 class Movie < ActiveRecord::Base
   attr_accessor(:score)
-  attr_reader(:title,:critic_score)
+  attr_reader(:critic_score)
+  validates :title, presence: true
+  validates :title, uniqueness: true
+  validates :rating, presence: true
+  validates :rating, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
 
   def get_rt_data
-    rt_title = self[:title].downcase.gsub(" ","_")
-    base_url = "http://www.rottentomatoes.com/m/"
-    complete_url = base_url + rt_title
-    html = open(complete_url)
-    Nokogiri::HTML(html)
+    begin
+      rt_title = self[:title].downcase.gsub(" ","_")
+      base_url = "http://www.rottentomatoes.com/m/"
+      complete_url = base_url + rt_title
+      html = open(complete_url)
+      Nokogiri::HTML(html)
+    rescue
+      return nil
+    end
   end
 
   def self.ratings_avg
@@ -35,7 +43,11 @@ class Movie < ActiveRecord::Base
 
   def get_rt_score
     rt_data = get_rt_data
-    rt_data.css("div#all-critics-numbers span.meter-value span[itemprop='ratingValue']").text
+    if rt_data == nil
+      return nil
+    else
+      rt_data.css("div#all-critics-numbers span.meter-value span[itemprop='ratingValue']").text
+    end
   end
 
   # def get_mc_score
@@ -45,7 +57,11 @@ class Movie < ActiveRecord::Base
 
   def get_rt_consensus
     rt_data = get_rt_data
-    critics_consensus = rt_data.css("div#all-critics-numbers p.critic_consensus").text
-    critics_consensus = critics_consensus.gsub(" Critics Consensus:","Critics Consensus:")
+    if rt_data == nil
+      return nil
+    else
+      critics_consensus = rt_data.css("div#all-critics-numbers p.critic_consensus").text
+      critics_consensus = critics_consensus.gsub(" Critics Consensus:","Critics Consensus:")
+    end
   end
 end
