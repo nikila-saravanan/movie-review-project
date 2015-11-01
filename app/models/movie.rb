@@ -32,6 +32,17 @@ class Movie < ActiveRecord::Base
     sum / @movies.length
   end
 
+  def self.alphabetized
+    @movies = Movie.all
+    @movies.sort_by &:title
+  end
+
+  def self.ranked
+    @movies = Movie.all
+    movies = @movies.sort_by &:rating
+    movies.reverse
+  end
+
 
   # def get_mc_data
   #   mc_title = @title.downcase.gsub(" ","-")

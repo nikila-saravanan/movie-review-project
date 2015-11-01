@@ -4,6 +4,8 @@ class MoviesController < ApplicationController
   # GET /movies.json
   def index
     @movies = Movie.all
+    @alphabetized = @movies.alphabetized
+    @ranked = @movies.ranked
   end
 
   # GET /movies/1
