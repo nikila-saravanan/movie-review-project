@@ -1,0 +1,38 @@
+
+
+<p id="notice"><%= notice %></p>
+<div style="background:#E8E8E8 !important" class="panel panel-default">
+<h2><u><%= @movie[:title] %></u></h2>
+</br>
+<% if @score == nil || @score == ""%>
+<br></br>
+<div class="alert alert-danger" role="alert">
+  <p>Sorry we weren't able to locate a critic consensus or RT rating for this film</p>
+</div>
+<% else %>
+<%= @consensus %>
+<% end %>
+<br></br>
+<div class="container">
+  <div class="row">
+      <div class="col-xs-2">
+      <span class="text-nowrap"><p style="line-height:0.9em;">Your Rating:</p></span>
+      <span class="text-nowrap"><p style="line-height:0.9em;">Critics Rating:</p></span>
+      <span class="text-nowrap"><p style="line-height:0.9em;">Your Avg. Rating:</p></span>
+      </div>
+      <div class="col-xs-2">
+      </div>
+      <div class="col-xs-8">
+          <% if @score == nil %>
+            <% @score = 0 %>
+          <% end %>
+          <%= horizontal_bar_chart( [@movie.rating, @score, @ratings_avg] ) %>
+      </div>
+    </div>
+  </div>
+<br></br>
+<h4>
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>
+</h4>
+</div>

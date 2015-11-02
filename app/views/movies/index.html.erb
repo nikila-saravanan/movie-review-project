@@ -1,0 +1,59 @@
+<div style="background:#33FF99 !important" class="jumbotron">
+<center><img src="tomatologo.png" alt="logo" align="middle"></center>
+<br></br>
+<div style="background:#E8E8E8 !important" class="panel panel-default">
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+</br>
+  <p id="notice"><%= notice %></p>
+</br>
+  <tbody>
+  <% if user_signed_in? %>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+          <center>
+          <h3><u>Movies (Alphabetical)</u></h3>
+          <br></br>
+          <% @alphabetized.each do |movie| %>
+              <h4> <%= link_to movie[:title], movie%> - <%= movie.rating %></h4>
+              <%= link_to 'Edit', edit_movie_path(movie) %> |
+              <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <br></br>
+          <% end %>
+          </center>
+        </div>
+        <div class="col-md-6">
+          <center>
+          <h3><u>Movies (Ranked)</u></h3>
+          <br></br>
+          <% @ranked.each do |movie| %>
+              <h4> <%= link_to movie[:title], movie%> - <%= movie.rating %></h4>
+              <%= link_to 'Edit', edit_movie_path(movie) %> |
+              <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <br></br>
+          <% end %>
+          </center>
+        </div>
+      </div>
+    </div>
+  <% else %>
+  <div style="background:#E8E8E8 !important" class="jumbotron">
+    <center> <p> Welcome to TomatoSmack! The app that lets you rate your favorite movies and compare your ratings to top critics. Start by signing up or check out our github page linked here. </p></center>
+  </div>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if user_signed_in? %>
+  <center>
+  <h2><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> <%= link_to 'Add a Movie', new_movie_path %></h2>
+  </center>
+<% end %>
+</div>
+</div>
