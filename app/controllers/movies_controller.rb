@@ -3,7 +3,11 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
-    @movies = current_user.movies
+    if user_signed_in?
+      @movies = current_user.movies
+    else
+      @movies = Movie.all
+    end
     @alphabetized = @movies.alphabetized
     @ranked = @movies.ranked
   end

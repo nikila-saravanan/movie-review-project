@@ -5,7 +5,6 @@ class Movie < ActiveRecord::Base
   attr_accessor(:score)
   attr_reader(:critic_score)
   validates :title, presence: true
-  validates :title, uniqueness: true
   validates :rating, presence: true
   validates :rating, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
 

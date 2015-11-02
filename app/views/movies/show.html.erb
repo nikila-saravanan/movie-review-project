@@ -23,7 +23,7 @@
       <div class="col-xs-2">
       </div>
       <div class="col-xs-8">
-          <% if @score == nil %>
+          <% if @score == nil || @score == "" %>
             <% @score = 0 %>
           <% end %>
           <%= horizontal_bar_chart( [@movie.rating, @score, @ratings_avg] ) %>
