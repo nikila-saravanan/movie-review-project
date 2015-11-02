@@ -9,5 +9,5 @@ function bar_chart( element, data ) {
 }
 
 $(document).ready(function(){ 
-	bar_chart( ".horizontal_bar_chart", [ 95, 87, 95 ] ); 
+	bar_chart( ".horizontal_bar_chart", [ 95, 94, 95 ] ); 
 });
