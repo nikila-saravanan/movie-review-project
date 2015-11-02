@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
-    @movies = Movie.all
+    @movies = current_user.movies
     @alphabetized = @movies.alphabetized
     @ranked = @movies.ranked
   end
@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def show
     @score = @movie.get_rt_score
     @consensus = @movie.get_rt_consensus
-    @movies = Movie.all
+    @movies = current_user.movies
     @ratings_avg = @movies.ratings_avg
   end
 
@@ -30,6 +30,7 @@ class MoviesController < ApplicationController
   # POST /movies.json
   def create
     @movie = Movie.new(movie_params)
+    current_user.movies << @movie
     respond_to do |format|
       if @movie.save
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
