@@ -6,7 +6,11 @@ TomatoSmack! is an app that allows users to create a database of movies they cho
 
 The app sorts movies alphabetically and by ranking on the homepage (See below) 
 
+![Alt text](/app/assets/images/Homescreen.png)
+
 The app leverages the Ruby Nokogiri gem to scrape RottenTomatoes for data on individual movies (RT score and critics consensus), which appears on each individual movie's page. Each movie page also has a D3.js chart that compares the user's and critics' rating for that movie, as well as the user's average rating across all the movies in their database (see below)
+
+![Alt text](/app/assets/images/Moviefile.png)
 
 # Contributing
 
