@@ -8,6 +8,6 @@ function bar_chart( element, data ) {
 	    .text(function(d) { return d; });
 }
 
-$(document).ready(function(){ 
-	bar_chart( ".horizontal_bar_chart", [ 44, 98, 63 ] ); 
+$(document).ready(function(){
+	bar_chart( ".horizontal_bar_chart", [ <%= data.join(', ') %> ] );
 });
