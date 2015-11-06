@@ -8,6 +8,6 @@ function bar_chart( element, data ) {
 	    .text(function(d) { return d; });
 }
 
-$(document).ready(function(){
-	bar_chart( ".horizontal_bar_chart", [movie.rating, score, ratings_avg] );
+$(document).ready(function(){ 
+	bar_chart( ".horizontal_bar_chart", [ 56, 67, 63 ] ); 
 });
