@@ -7,7 +7,3 @@ function bar_chart( element, data ) {
 	    .style("width", function(d) { return x(d) + "px"; })
 	    .text(function(d) { return d; });
 }
-
-$(document).ready(function(){
-	bar_chart( ".horizontal_bar_chart", ["<%= data.join(', ') %>"] );
-});
