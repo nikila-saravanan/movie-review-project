@@ -14,7 +14,10 @@ The app leverages the Ruby Nokogiri gem to scrape RottenTomatoes for data on ind
 
 # Contributing
 
-Fork it Create your feature branch (git checkout -b my-new-feature) Commit your changes (git commit -am 'Add some feature') Push to the branch (git push origin my-new-feature) Create new Pull Request
+Fork it Create your feature branch (git checkout -b my-new-feature)
+Commit your changes (git commit -am 'Add some feature')
+Push to the branch (git push origin my-new-feature)
+Create new Pull Request
 
 # License
 
