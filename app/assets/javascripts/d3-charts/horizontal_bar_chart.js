@@ -9,5 +9,5 @@ function bar_chart( element, data ) {
 }
 
 $(document).ready(function(){
-	bar_chart( ".horizontal_bar_chart", [@movie.rating, @score, @ratings_avg] );
+	bar_chart( ".horizontal_bar_chart", [movie.rating, score, ratings_avg] );
 });
