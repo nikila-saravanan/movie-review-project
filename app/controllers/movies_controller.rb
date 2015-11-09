@@ -15,10 +15,14 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
+    # @movie.rating, @score, @ratings_avg
+    gon.movie_rating = @movie.rating
+    gon.score = @movie.get_rt_score.to_i
+    gon.ratings_avg = current_user.movies.ratings_avg
     @score = @movie.get_rt_score
     @consensus = @movie.get_rt_consensus
-    @movies = current_user.movies
-    @ratings_avg = @movies.ratings_avg
+    #@movies = current_user.movies
+    #@ratings_avg = current_user.movies.ratings_avg
   end
 
   # GET /movies/new

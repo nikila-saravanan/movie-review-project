@@ -26,7 +26,10 @@
           <% if @score == nil || @score == "" %>
             <% @score = 0 %>
           <% end %>
-          <%= horizontal_bar_chart( [@movie.rating, @score, @ratings_avg] ) %>
+          <div class="horizontal_bar_chart">
+
+          </div>
+          <%#= horizontal_bar_chart( [@movie.rating, @score, @ratings_avg] ) %>
       </div>
     </div>
   </div>

@@ -1,3 +1,12 @@
+$(document).ready(function() {
+	bar_chart( ".horizontal_bar_chart", [ gon.movie_rating, gon.score, gon.ratings_avg ] );
+});
+
+// $( document ).ready(function() {
+//     console.log( "ready!" );
+// });
+
+
 function bar_chart( element, data ) {
 	var x = d3.scale.linear().domain( [0, d3.max(data)] ).range( [0, 420] );
 	d3.select(element)
