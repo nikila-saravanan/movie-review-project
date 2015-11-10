@@ -1,6 +1,6 @@
 # TomatoSmack!
 
-TomatoSmack! is an app that allows users to create a database of movies they choose, rate those movies, and compare their rating to critics.
+TomatoSmack! is an app that allows users to create a database of movies they choose, rate those movies, and compare their rating to critics. Please check out the deployed app [here](http://tomatosmack.herokuapp.com/).
 
 # Features
 
