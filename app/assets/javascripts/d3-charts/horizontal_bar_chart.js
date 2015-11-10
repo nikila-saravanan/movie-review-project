@@ -2,9 +2,7 @@ $(document).ready(function() {
 	bar_chart( ".horizontal_bar_chart", [ gon.movie_rating, gon.score, gon.ratings_avg ] );
 });
 
-// $( document ).ready(function() {
-//     console.log( "ready!" );
-// });
+
 
 
 function bar_chart( element, data ) {
